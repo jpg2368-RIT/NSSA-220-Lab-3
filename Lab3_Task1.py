@@ -25,7 +25,7 @@ def readData(in_file):
     reading = False
     with open(in_file) as file:
         for line in file:
-            if "@Data" in line:
+            if "@DATA" in line:
                 reading = True
                 continue
             if reading:
@@ -43,9 +43,9 @@ def readData(in_file):
     return iris_list
 
 
-def procNumField(iList, field):
+def procNumField(iris_list, field):
     vals = []
-    for iris in iList:
+    for iris in iris_list:
         if field == 1:
             vals.append(iris.sLen)
         elif field == 2:
@@ -87,7 +87,6 @@ def main(args):
         exit(1)
 
     iris_list = readData(args[1])
-    print(f"{iris_list}")
 
     field_min, field_max, field_avg = procNumField(iris_list, 1)
     print(f"Sepal Length: min = {field_min}, max = {field_max}, average = {field_avg}")
