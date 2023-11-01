@@ -30,11 +30,11 @@ def readData(in_file):
                 continue
             if reading:
                 fields = line.split(',')
-                if fields[4] == "Iris-setosa":
+                if "Iris-setosa" in fields[4]:
                     iris_type = "setosa"
-                elif fields[4] == "Iris-virginica":
+                elif "Iris-virginica" in fields[4]:
                     iris_type = "virginica"
-                elif fields[4] == "Iris-versicolor":
+                elif "Iris-versicolor" in fields[4]:
                     iris_type = "versicolor"
                 else:
                     iris_type = "unknown"
@@ -59,7 +59,7 @@ def procNumField(iris_list, field):
             exit(1)
     field_min = min(vals)
     field_max = max(vals)
-    field_avg = sum(vals) / len(vals)
+    field_avg = round(sum(vals) / len(vals), 3)
     return field_min, field_max, field_avg
 
 
@@ -75,9 +75,6 @@ def countIrisTypes(iris_list):
             vir_count += 1
         elif iris_type == "versicolor":
             ver_count += 1
-        else:
-            print(f"Iris type {iris_type} is unknown")
-            exit(1)
     return set_count, vir_count, ver_count
 
 
