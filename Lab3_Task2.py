@@ -1,4 +1,5 @@
-#!/bin/python3
+#!/bin/python3.9
+
 import sys
 from dataclasses import dataclass
 
@@ -31,7 +32,8 @@ def main(args):
     print(f"Possible affected files:")
     for i in range(len(original_hashes)):
         if original_hashes[i].md5 != new_hashes[i].md5:
-            print(f"{original_hashes[i].file}:\n\tOriginal MD5: {original_hashes[i].md5}\n\tNew MD5: {new_hashes[i].md5}")
+            print(
+                f"{original_hashes[i].file}:\n\tOriginal MD5: {original_hashes[i].md5}\n\tNew MD5: {new_hashes[i].md5}")
 
 
 if __name__ == "__main__":

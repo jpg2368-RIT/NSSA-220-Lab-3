@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/bin/python3.9
 
 import sys
 from dataclasses import dataclass
