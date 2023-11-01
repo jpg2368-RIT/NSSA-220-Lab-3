@@ -1,6 +1,7 @@
 #!/bin/python3.9
 
 import sys
+import statistics
 from dataclasses import dataclass
 
 
@@ -59,8 +60,9 @@ def procNumField(iris_list, field):
             exit(1)
     field_min = min(vals)
     field_max = max(vals)
-    field_avg = round(sum(vals) / len(vals), 3)
-    return field_min, field_max, field_avg
+    field_avg = round(statistics.mean(vals), 3)
+    field_std_dev = round(statistics.stdev(vals, field_avg), 3)
+    return field_min, field_max, field_avg, field_std_dev
 
 
 def countIrisTypes(iris_list):
@@ -85,14 +87,14 @@ def main(args):
 
     iris_list = readData(args[1])
 
-    field_min, field_max, field_avg = procNumField(iris_list, 1)
-    print(f"Sepal Length: min = {field_min}, max = {field_max}, average = {field_avg}")
-    field_min, field_max, field_avg = procNumField(iris_list, 2)
-    print(f"Sepal Width: min = {field_min}, max = {field_max}, average = {field_avg}")
-    field_min, field_max, field_avg = procNumField(iris_list, 3)
-    print(f"Petal Length: min = {field_min}, max = {field_max}, average = {field_avg}")
-    field_min, field_max, field_avg = procNumField(iris_list, 4)
-    print(f"Petal Width: min = {field_min}, max = {field_max}, average = {field_avg}")
+    field_min, field_max, field_avg, field_std_dev = procNumField(iris_list, 1)
+    print(f"Sepal Length: min = {field_min}, max = {field_max}, average = {field_avg}, standard deviation = {field_std_dev}")
+    field_min, field_max, field_avg, field_std_dev = procNumField(iris_list, 2)
+    print(f"Sepal Width: min = {field_min}, max = {field_max}, average = {field_avg}, standard deviation = {field_std_dev}")
+    field_min, field_max, field_avg, field_std_dev = procNumField(iris_list, 3)
+    print(f"Petal Length: min = {field_min}, max = {field_max}, average = {field_avg}, standard deviation = {field_std_dev}")
+    field_min, field_max, field_avg, field_std_dev = procNumField(iris_list, 4)
+    print(f"Petal Width: min = {field_min}, max = {field_max}, average = {field_avg}, standard deviation = {field_std_dev}")
 
     num_set, num_vir, num_ver = countIrisTypes(iris_list)
     print(f"Iris Types: Iris Steosa = {num_set}, Iris Versicolor = {num_ver}, Iris Virginica = {num_vir}")
